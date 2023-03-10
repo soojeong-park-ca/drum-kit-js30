@@ -70,11 +70,9 @@
       window.addEventListener("keydown", function (e) {
         // find the key element that matches the key pressed
         const pressedKey = document.querySelector(`.key-${e.keyCode}`);
-        console.log(pressedKey);
 
         // find the audio element that matches the key pressed
         const audioToPlay = document.querySelector(`.audio-${e.keyCode}`);
-        console.log(audioToPlay);
 
         // if pressedKey exists:
         //--1. add "playing" class then remove
