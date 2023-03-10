@@ -1,1 +1,3 @@
-# drum-kit-js30
+# JavaScript Drum Kit
+
+WIP
