@@ -60,14 +60,14 @@
       const allKeys = document.querySelectorAll(".key");
       const allAudios = document.querySelectorAll("audio");
 
-      /* adding class with data-key to each element */
+      /* add class with data-key to each element */
       allKeys.forEach(key => key.classList.add(`key-${key.dataset.key}`));
       allAudios.forEach(audio =>
         audio.classList.add(`audio-${audio.dataset.key}`)
       );
 
-      /* event listener */
-      window.addEventListener("keydown", function (e) {
+      /* audio play function */
+      function playAudio(e) {
         // find the key element that matches the key pressed
         const pressedKey = document.querySelector(`.key-${e.keyCode}`);
 
@@ -82,8 +82,29 @@
         }, 100);
         //--2. play the corresponding audio
         if (!audioToPlay) return;
-        if (audioToPlay) audioToPlay.play();
+        if (audioToPlay) {
+          // ❗️ make audio play again from start if key is pressed again before audio ends
+          // console.log(audioToPlay.paused);
+          //-- when audio is done playing the whole sound
+          if (audioToPlay.paused) audioToPlay.play();
+          //-- when audio is not done playing the whole sound, reset the audio
+          else audioToPlay.currentTime = 0;
+        }
+      }
+
+      /* event listener */
+      window.addEventListener("keydown", e => {
+        playAudio(e);
       });
     </script>
   </body>
 </html>
+
+<!-- function play() {
+    var audio = document.getElementById('audio1');
+    if (audio.paused) {
+        audio.play();
+    }else{
+        audio.currentTime = 0
+    }
+} -->
