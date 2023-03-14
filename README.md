@@ -18,7 +18,8 @@ Drum kit built with Vanilla JavaScript.
 ### Screenshots
 
 Demo video:
-<video src="https://user-images.githubusercontent.com/126619528/224394931-ace995c0-7e74-4462-84b3-45869ccfc3a0.mov" type="video/mp4" controls>
+
+https://user-images.githubusercontent.com/126619528/225124747-ab1e45a8-0703-4054-b4b8-d44bce6a1e2b.mov
 
 ### Demo Link
 
