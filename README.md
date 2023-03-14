@@ -22,15 +22,13 @@ Demo video:
 
 ### Demo Link
 
-- Live Site URL: (to be added soon)
+**[💻 Live Site URL](https://soojeong-park-ca.github.io/drum-kit-js30/)**
 
 ## About the Project
 
 ### Status
 
-🛠 Currently working on :
-
-- deploying the app
+✅ Completed & Deployed
 
 ### Built with
 
