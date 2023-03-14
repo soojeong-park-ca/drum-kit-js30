@@ -42,34 +42,40 @@ Demo video:
 
 This was a quick and easy project built as I started taking the JavaScript 30 course by Wes Bos. Project goals included using just Vanilla JS to build a website. I decided to build first before listening to lectures because that’s how I learn best.
 
-One new thing I learned from this project is using the paused attribute and currentTime property. I used these to reset the audio whenever the audio was supposed to be replayed before it finished playing the whole sound.
+Some features to highlight in this project are:
+
+using the `currentTime` property to reset the audio whenever the audio is supposed to reset before it finishes playing the whole sound
 
 ```js
-/* audio play function */
+/* function */
 function playAudio(e) {
   // find the key element that matches the key pressed
-  const pressedKey = document.querySelector(`.key-${e.keyCode}`);
+  const pressedKey = document.querySelector(`.key[data-key="${e.keyCode}"]`);
 
   // find the audio element that matches the key pressed
-  const audioToPlay = document.querySelector(`.audio-${e.keyCode}`);
+  const audioToPlay = document.querySelector(`audio[data-key="${e.keyCode}"]`);
 
   // if pressedKey exists:
   //--1. add "playing" class then remove
   pressedKey?.classList.add("playing");
-  setTimeout(function () {
-    pressedKey?.classList.remove("playing");
-  }, 100);
   //--2. play the corresponding audio
   if (!audioToPlay) return;
-  if (audioToPlay) {
-    // ❗️ make audio play again from start if key is pressed again before audio ends
-    // console.log(audioToPlay.paused);
-    //-- when audio is done playing the whole sound
-    if (audioToPlay.paused) audioToPlay.play();
-    //-- when audio is not done playing the whole sound, reset the audio
-    else audioToPlay.currentTime = 0;
-  }
+  // ❗️ make audio play again from start if key is pressed again before audio ends
+  //---a. reset audio
+  else audioToPlay.currentTime = 0;
+  //---b. play audio
+  audioToPlay.play();
 }
+```
+
+using `transitionend` event in an event listener to toggle a class instead of using setTimeout()
+
+```js
+// toggle 'playing' class
+window.addEventListener("transitionend", e => {
+  if (e.propertyName !== "transform") return;
+  e.target.classList.remove("playing");
+});
 ```
 
 The technologies implemented in this project are HTML, CSS, and Vanilla JavaScript. It was a quick but super fun project and I got to work with audio elements for the first time!
