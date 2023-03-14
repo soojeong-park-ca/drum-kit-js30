@@ -57,44 +57,38 @@
     <audio data-key="76" src="sounds/tink.wav"></audio>
 
     <script>
-      const allKeys = document.querySelectorAll(".key");
-      const allAudios = document.querySelectorAll("audio");
-
-      /* add class with data-key to each element */
-      allKeys.forEach(key => key.classList.add(`key-${key.dataset.key}`));
-      allAudios.forEach(audio =>
-        audio.classList.add(`audio-${audio.dataset.key}`)
-      );
-
-      /* audio play function */
+      /* function */
       function playAudio(e) {
         // find the key element that matches the key pressed
-        const pressedKey = document.querySelector(`.key-${e.keyCode}`);
+        const pressedKey = document.querySelector(
+          `.key[data-key="${e.keyCode}"]`
+        );
 
         // find the audio element that matches the key pressed
-        const audioToPlay = document.querySelector(`.audio-${e.keyCode}`);
+        const audioToPlay = document.querySelector(
+          `audio[data-key="${e.keyCode}"]`
+        );
 
         // if pressedKey exists:
         //--1. add "playing" class then remove
         pressedKey?.classList.add("playing");
-        setTimeout(function () {
-          pressedKey?.classList.remove("playing");
-        }, 100);
         //--2. play the corresponding audio
         if (!audioToPlay) return;
-        if (audioToPlay) {
-          // ❗️ make audio play again from start if key is pressed again before audio ends
-          // console.log(audioToPlay.paused);
-          //-- when audio is done playing the whole sound
-          if (audioToPlay.paused) audioToPlay.play();
-          //-- when audio is not done playing the whole sound, reset the audio
-          else audioToPlay.currentTime = 0;
-        }
+        // ❗️ make audio play again from start if key is pressed again before audio ends
+        //---a. reset audio
+        else audioToPlay.currentTime = 0;
+        //---b. play audio
+        audioToPlay.play();
       }
 
       /* event listener */
-      window.addEventListener("keydown", e => {
-        playAudio(e);
+      // sound
+      window.addEventListener("keydown", e => playAudio(e));
+
+      // toggle 'playing' class
+      window.addEventListener("transitionend", e => {
+        if (e.propertyName !== "transform") return;
+        e.target.classList.remove("playing");
       });
     </script>
   </body>
