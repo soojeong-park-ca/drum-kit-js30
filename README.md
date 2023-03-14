@@ -1,6 +1,6 @@
 # JavaScript Drum Kit
 
-Drum kit built with Vanilla JavaScript.
+JS Drum Kit is a drum kit website built with Vanilla JavaScript.<br/>It's designed for you to play the drum kit using designated keys on the keyboard, so the website only works on PC at the moment.
 
 ## Table of contents
 
